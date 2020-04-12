@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="navbar" class="">
+    <a href="logout" class="alink">Sign Out</a>
+    <h3>Students</h3>
+</div>
+
+
+<section id="three">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-5 mb-md-5" style="width: 80%;">
+        <div class='row mb-4 mx-auto pt-4 pb-3 col-md text-center'>
+            <input type="text" class="col-md-9 border border-info py-2 mx-auto rounded" id="srchinput"
+                placeholder="Type something here..">
+        </div>
+        <div id="divcontainer">
+
+            <div class='mb-2 pt-4 pb-3 px-lg-4'>
+
+
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th scope='col'>Index</th>
+                            <th scope='col'>Registration</th>
+                            <th scope='col'>First Name</th>
+                            <th scope='col'>Last Name</th>
+                            <th scope='col'>Department</th>
+                            <th scope='col'>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for s in students %}
+
+                            <tr class='contentbox' id='{{s.id}}'>
+                                <th scope='row'>{{s.id}}</th>
+                                <td>{{s.regno}}</td>
+                                <td>{{s.fname}}</td>
+                                <td>{{s.lname}}</td>
+                                <td>{{s.dpt}}</td>
+                                <td>{{s.acayear}}</td>
+                                <td>
+                                    <h5><div class='float-right'>
+                                        <i class='fa fa-edit actionIcon mx-1' onclick="location.href='sedit?Sid={{s.id}}&Fnam={{s.fname}}&Lnam={{s.lname}}&Reg={{s.regno}}&Dpt={{s.dpt}}&Aca={{s.acayear}}'" ></i>
+                                        <i class='fa fa-trash-o actionIcon mx-1 deletebtn'></i>
+                                    </div></h5>
+                                </td>
+                                
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <input class="btn btn-light" type="button" value="Go Back" onclick="location.href='home'">
+    </div>
+
+
+</section>
+
+<button class="btn btn-light rounded-circle floatbtn" onclick="location.href='home'">
+    <i class="fa fa-home"></i></button>
+
+<script>
+    $(document).ready(function() {
+        $("#srchinput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#divcontainer .contentbox").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        $(".deletebtn").click(function(event) {
+            let result = confirm("Are you sure want to delete record?");
+            if (result) {
+                let val = $(this).closest('.contentbox').attr('id');
+                $.ajax({
+                    type: 'POST',
+                    url: 'delsprocess',
+                    data: {
+                        sindex: val,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success:function(data) {
+                        alert("Record deleted successfully!");
+                        $('#' + val).remove();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                    }
+                });
+            }
+
+        });
+    });
+</script>
+
+{% endblock %}

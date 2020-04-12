@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="two">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-lg-5 mb-md-5" style="width: 80%;">
+        <div class="form-row border-success rounded-lg addsucc my-5 pt-3" id="succarea" style="display:none;">
+            <header class="text-center">
+
+                <p><span class="fa fa-check-circle-o"></span><strong> Record Added Successfully!</strong> </p>
+            </header>
+        </div>
+        <div class="form-row">
+
+            <div class="col-md-3 mb-3">
+                <label for="fname">First Name</label>
+                <input class="form-control" type="text" id="fname" name="tinput" placeholder="ex: Supun">
+
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="lname">Last Name</label>
+                <input class="form-control" type="text" id="lname" name="tinput" placeholder="ex: Sadeepa">
+
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="uindex">Index Number</label>
+                <input class="form-control" type="number" id="uindex" name="tinput" placeholder="ex: 3606">
+
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="regno">Registration Number</label>
+                <input class="form-control" type="text" id="regno" name="tinput" placeholder="ex: ICT/15/16/081">
+
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="dpt">Department</label>
+                <select class="form-control" id="dpt" name="dpt">
+                    <option value="Computing">Computing</option>
+                    <option value="Physical Sciences">Physical Sciences</option>
+                    <option value="Biological Sciences">Biological Sciences</option>
+                    <option value="Health Promotion">Health Promotion</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="acayear">Academic Year</label>
+                <select class="form-control" id="acayear" name="acayear">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md mb-2">
+                <label for="my_camera">Image</label>
+                <div id="my_camera" style="width:420px; height:300px;"></div>
+            </div>
+            <div class="col-md mb-2">
+                <label for="my_result">Snapshot</label>
+                <div id="my_result"></div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="col-md mb-3">
+                <a href='javascript:void(take_snapshot())' class='mx-auto'>Take Snapshot</a>
+            </div>
+
+        </div>
+        <div class="col-md">
+
+
+
+        </div>
+        <div class="d-flex justify-content-between">
+            <input class="btn btn-light float-left" type="button" value="Go Back" onclick="location.href='home'">
+
+            <div>
+                <button class="btn-custom" disabled>1</button>
+                <button class="btn-custom" disabled>2</button>
+                <button class="btn-custom" disabled>3</button>
+                <button class="btn-custom" disabled>4</button>
+                <button class="btn-custom" disabled>5</button>
+            </div>
+            <div>
+                <input class="btn btn-light" type="submit" value="Clear fields" id="clrbtn" onclick="clrFields()">
+                <button id="subbutton" class="btn btn-primary" name="submit" onclick="inputSubmit()" disabled>Add
+                    student</button>
+
+            </div>
+        </div>
+
+
+        <!-- </form> -->
+    </div>
+</section>
+
+{% endblock %}

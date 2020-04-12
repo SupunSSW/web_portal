@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="navbar">
+        <a href="logout" class="alink">Sign Out</a>
+        <h3>Edit notice</h3>
+    </div>
+
+
+    <section id="two">
+
+    <!-- <form> -->
+    <form id="editnform" class="mx-auto mt-lg-5 mb-md-5" style="width: 80%;">
+        <input id="nidn" type="text" id="nid" style="display:none;" value="{{notice.id}}">
+                
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="dpt">Department</label>
+                <select class="form-control" id="dpt" name="dpt">
+                    <option value="all" {%if notice.dpt == 'all' %} selected {% endif %}>All</option>
+                    <option value="Computing" {%if notice.dpt == 'Computing' %} selected {% endif %}>Computing</option>
+                    <option value="Physical Sciences" {%if notice.dpt == 'Physical Sciences' %} selected {% endif %}>Physical Sciences</option>
+                    <option value="Biological Sciences" {%if notice.dpt == 'Biological Sciences' %} selected {% endif %}>Biological Sciences</option>
+                    <option value="Health Promotion" {%if notice.dpt == 'Health Promotion' %} selected {% endif %}>Health Promotion</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="acayear">Academic Year</label>
+                <select class="form-control" id="acayear" name="acayear">
+                    <option value="0" {%if notice.acayear == '0' %} selected {% endif %}>All</option>
+                    <option value="1" {%if notice.acayear == '1' %} selected {% endif %}>1st Year</option>
+                    <option value="2" {%if notice.acayear == '2' %} selected {% endif %}>2nd Year</option>
+                    <option value="3" {%if notice.acayear == '3' %} selected {% endif %}>3rd Year</option>
+                    <option value="4" {%if notice.acayear == '4' %} selected {% endif %}>4th Year</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="expdate">Expiry Date</label>
+                <input class="form-control" type="date" id="expdate" name="expdate" value="{{notice.expdate}}">
+
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md mb-3">
+            <label for="topic">Topic</label>
+            <input class="form-control" type="text" id="topic" name="tinput" placeholder="Topic of the notice" value="{{notice.topic}}">
+
+            </div>
+            
+        </div>
+        <div class="form-row">
+            <div class="col-md mb-3">
+            <label for="textcontent">Content</label>
+            <a class="float-right my-1 mr-2" href="" onclick="document.getElementById('upfile').click();">Import csv</a>
+            <textarea rows="4" cols="50" class="form-control" id="textcontent" placeholder="Description">{{notice.content}}</textarea>
+            <input type="file" style="display:none;" id="upfile" name="file"  accept=".csv"/>
+            </div>
+            
+        </div>
+        <input class="btn btn-light" type="button" value="Go to Home" onclick="location.href='home.php'">
+        <div class="float-right">
+            <input id="clrbtn" class="btn btn-light" type="reset" value="Clear fields">
+            <button id="frmsubmit" class="btn btn-primary" name="submit">Add notice</button>
+        </div>
+            
+        <!-- </form> -->
+    </form>
+    </section>
+
+    <script>
+        $('#editnform').on('submit', function(event){
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: 'editnprocess',
+                data: {
+                    nid_n : $('#nidn').val(),
+                    dprt: $('#dpt').val(),
+                    acayear: $('#acayear').val(),
+                    expdate: $('#expdate').val(),
+                    topic: $('#topic').val(),
+                    tcontent : $('#textcontent').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                    //csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success:function(data) {
+                    alert("Recorded Successfully!");
+                    location.replace('notices');
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(ajaxOptions);
+                }
+            });
+        });
+    </script>
+
+
+{% endblock  %}

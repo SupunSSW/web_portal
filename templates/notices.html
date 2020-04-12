@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div id="navbar" class="">
+    <a href="logout" class="alink">Sign Out</a>
+    <h3>Notices</h3>
+</div>
+
+<section id="three">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-5 mb-md-5" style="width: 80%;">
+        <div class='row mb-4 mx-auto pt-4 pb-3 col-md text-center'>
+            <input type="text" class="col-md-9 border border-info py-2 mx-auto rounded" id="srchinput"
+                placeholder="Type something here..">
+        </div>
+        <div id="divcontainer">
+                        
+            {% for n in notices %}
+            <div class='contentbox mb-2 border border-info rounded py-3 px-lg-4' id="{{n.id}}">
+                <h5><div class='float-right'>
+                    <i class='fa fa-edit actionIcon mx-1' onclick="location.href='nedit?Nid={{n.id}}&Topic={{n.topic}}&Content={{n.content}}&Dpt={{n.dpt}}&Aca={{n.acayear}}&Exp={{n.expdate}}'"></i>
+                    <i class='fa fa-trash-o actionIcon mx-1 dbtn'></i></div>
+                    <span class='label label-default'>Notice {{n.id}}</span>
+                </h5>
+
+                <h5><span style='font-size:18px;'><span class='label-border'>Department</span>: </span><span class='text text-capitalize'>{{n.dpt}}</span></h5>
+                <h5><span style='font-size:18px;'><span class='label-border'>Year</span>: </span>{%if n.acayear %} {{n.acayear}} {% else %}All{% endif %}</h5>
+                <h5><span style='font-size:18px;'><span class='label-border'>Expires on</span>: {{n.expdate}}</span></h5>
+
+                
+                <h5><strong>{{n.topic}}</strong></h4>
+                <p>{{n.content}}</p>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <input class="btn btn-light" type="button" value="Go Back" onclick="location.href='home'">
+    </div>
+
+
+</section>
+
+<button class="btn btn-light rounded-circle floatbtn" onclick="location.href='home'"><i
+    class="fa fa-home"></i></button>
+
+<script>
+    $(document).ready(function() {
+        $("#srchinput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#divcontainer .contentbox").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        $('.dbtn').on('click',function(){
+            let result = confirm("Are you sure want to delete record?");
+            if (result) {
+                let val = $(this).closest('.contentbox').attr('id');
+                $.ajax({
+                    type: 'POST',
+                    url: 'delnprocess',
+                    data: {
+                        nindex: val,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success:function(data) {
+                        alert("Record deleted successfully!");
+                        $('#' + val).remove();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+{% endblock %}

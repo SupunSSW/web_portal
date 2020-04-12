@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Actions | Admin</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}" />
+		<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'assets/css/font-awesome.css' %}" />
+		<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Banner -->
+			<!-- <section id="banner">
+				<h2><strong>Typify</strong> is a free responsive site template</h2>
+				<p>Brought to you by Templated</p>
+				<ul class="actions">
+					<li><a href="#" class="button special">Get started</a></li>
+				</ul>
+			</section> -->
+
+			<div id="navbar">
+				<!-- <a href="#">Sign Out</a> -->
+				<a href="logout" class="alink">Sign Out</a>
+			</div>
+
+
+            {% block content %}
+
+            {% endblock %}
+			
+
+		<!-- Two -->
+		<!-- Three -->
+		
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="copyright">
+					&copy; Team FifthWave
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

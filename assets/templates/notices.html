@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section id="three">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-5 mb-md-5" style="width: 80%;">
+        <div class='row mb-4 mx-auto pt-4 pb-3 col-md text-center'>
+            <input type="text" class="col-md-9 border border-info py-2 mx-auto rounded" id="srchinput"
+                placeholder="Type something here..">
+        </div>
+        <div id="divcontainer">
+            <!-- <?php
+
+            // if(isset($_POST['submit'])) {
+                // session_start();
+                $conn = mysqli_connect("localhost", "root", "", "nbdatabase");
+
+                if (!$conn) {
+                    die('Error connecting to database.');
+                } else {
+
+                    $query = "SELECT * FROM `notices` ORDER BY `noticeid` DESC;";
+
+                    $res = mysqli_query($conn, $query);
+
+
+                    while ($row = mysqli_fetch_array($res)) {
+                        switch ($row['dpt']) {
+                            case 'Computing':
+                                $dpt = 'Computing';
+                            break;
+                            case 'Physical Sciences':
+                                $dpt = 'Physical Sciences';
+                            break;
+                            case 'Biological Sciences':
+                                $dpt = 'Biological Sciences';
+                            break;
+                            case 'Health Promotion':
+                                $dpt = 'Health Promotion';
+                            break;
+                            default:
+                                $dpt = 'All Departments';
+
+                        }
+
+                        switch ($row['acayear']) {
+                            case '1':
+                                $aca = "First Year";
+                            break;
+                            case '2':
+                                $aca = "Second Year";
+                            break;
+                            case '3':
+                                $aca = "Third Year";
+                            break;
+                            case '4':
+                                $aca = "Fourth Year";
+                            break;
+                            default:
+                                $aca = "All Years";
+                            
+                        }
+                        
+
+                        echo "
+                            <div class='contentbox mb-2 border border-info rounded pt-4 pb-3 px-lg-4' id='".$row['noticeid']."'>
+                                <h5><div class='float-right'>
+                                    <i class='fa fa-edit actionIcon mx-1' onclick=\"location.href='nedit.php?Nid=".$row['noticeid']."&Topic=".$row['topic']."&Content=".$row['content']."&Dpt=".$row['dpt']."&Aca=".$row['acayear']."&Exp=".$row['expdate']."'\"></i>
+                                    <i class='fa fa-trash-o actionIcon mx-1 deletebtn'></i></div>
+                                    <span class='label label-default'>Notice ".$row['noticeid']."</span>
+                                </h5>
+
+                                <h5><span style='font-size:18px;'><span class='label-border'>Department</span>: </span><span class='text text-capitalize'>".$dpt."</span></h5>
+                                <h5><span style='font-size:18px;'><span class='label-border'>Year</span>: </span>".$aca."</h5>
+                                <h5><span style='font-size:18px;'><span class='label-border'>Expires on</span>: </span>".$row['expdate']."</h5>
+
+                                <h5><strong>".$row['topic']."</strong></h4>
+                                <p>".$row['content']."</p>
+
+                            </div>
+                            ";
+                    }
+                }
+            // }
+
+            ?> -->
+        </div>
+
+        <input class="btn btn-light" type="button" value="Go Back" onclick="location.href='home'">
+    </div>
+
+
+</section>
+
+<button class="btn btn-light rounded-circle floatbtn" onclick="location.href='home'"><i
+    class="fa fa-home"></i></button>
+
+{% endblock %}

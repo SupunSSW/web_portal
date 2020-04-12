@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="three">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-5 mb-md-5" style="width: 80%;">
+        <div class='row mb-4 mx-auto pt-4 pb-3 col-md text-center'>
+            <input type="text" class="col-md-9 border border-info py-2 mx-auto rounded" id="srchinput"
+                placeholder="Type something here..">
+        </div>
+        <div id="divcontainer">
+
+            <div class='mb-2 pt-4 pb-3 px-lg-4'>
+
+
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th scope='col'>Index</th>
+                            <th scope='col'>Registration</th>
+                            <th scope='col'>First Name</th>
+                            <th scope='col'>Last Name</th>
+                            <th scope='col'>Department</th>
+                            <th scope='col'>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <!-- <?php
+
+                            $conn = mysqli_connect("localhost", "root", "", "nbdatabase");
+
+                            if (!$conn) {
+                                die('Error connecting to database.');
+                            } else {
+
+                                $query = "SELECT * FROM `students` ORDER BY `uindex` DESC;";
+
+                                $res = mysqli_query($conn, $query);
+
+
+                                while ($row = mysqli_fetch_array($res)) {
+                                    switch ($row['acayear']) {
+                                        case '1':
+                                            $aca = "First Year";
+                                        break;
+                                        case '2':
+                                            $aca = "Second Year";
+                                        break;
+                                        case '3':
+                                            $aca = "Third Year";
+                                        break;
+                                        case '4':
+                                            $aca = "Fourth Year";
+                                        break;
+                                        default:
+                                            $aca = "All Years";
+                                        
+                                    }
+                                    
+
+                                    echo "
+                                        <tr class='contentbox' id='".$row['uindex']."'>
+                                            <th scope='row'>".$row['uindex']."</th>
+                                            <td>".$row['regno']."</td>
+                                            <td>".$row['fname']."</td>
+                                            <td>".$row['lname']."</td>
+                                            <td>".$row['dpt']."</td>
+                                            <td>".$aca."</td>
+                                            <td>
+                                                <h5><div class='float-right'>
+                                                    <i class='fa fa-edit actionIcon mx-1' onclick=\"location.href='sedit.php?Uin=".$row['uindex']."&Fname=".$row['fname']."&Lname=".$row['lname']."&Reg=".$row['regno']."&Dpt=".$row['dpt']."&Aca=".$row['acayear']."'\"></i>
+                                                    <i class='fa fa-trash-o actionIcon mx-1 deletebtn'></i>
+                                                </div></h5>
+                                            </td>
+                                            
+                                        </tr>
+                                    ";
+                                }
+                            }
+                        ?> -->
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <input class="btn btn-light" type="button" value="Go Back" onclick="location.href='home'">
+    </div>
+
+
+</section>
+
+<button class="btn btn-light rounded-circle floatbtn" onclick="location.href='home'">
+    <i class="fa fa-home"></i></button>
+
+{% endblock %}

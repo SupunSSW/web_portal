@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<section id="one" class="wrapper special">
+		<header class="major"></header>
+		<div class="inner">
+			<div class="features">
+				<div class="feature" onclick="location.href='addnotice'">
+					<i class="fa fa-pencil-square-o"></i>
+					<h2>Add Notice</h2>
+					<p>Add a new notice</p>
+				</div>
+				<div class="feature" onclick="location.href='notices'">
+					<i class="fa fa-newspaper-o"></i>
+					<h2>Notices</h2>
+					<p>View currently available notices</p>
+				</div>
+				<div class="feature" onclick="location.href='students'">
+					<i class="fa fa-users"></i>
+					<h2>Students</h2>
+					<p>View all enrolled students</p>
+				</div>
+				<div class="feature" onclick="location.href='addstudent'">
+					<i class="fa fa-user-plus"></i>
+					<h2>Add Student</h2>
+					<p>Add a new student</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

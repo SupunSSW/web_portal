@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="two">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-lg-5 mb-md-5" style="width: 80%;">
+        <div class="form-row border-success rounded-lg addsucc my-5 pt-3" id="succarea" style="display:none;">
+            <header class="text-center">
+            
+            <p><span class="fa fa-check-circle-o"></span><strong> Notice Added Successfully!</strong>	</p>				
+            </header>
+        </div>
+    
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="dpt">Department</label>
+                <select class="form-control" id="dpt" name="dpt">
+                    <option value="all">All</option>
+                    <option value="Computing">Computing</option>
+                    <option value="Physical Sciences">Physical Sciences</option>
+                    <option value="Biological Sciences">Biological Sciences</option>
+                    <option value="Health Promotion">Health Promotion</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="acayear">Academic Year</label>
+                <select class="form-control" id="acayear" name="acayear">
+                    <option value="0">All</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="expdate">Expiry Date</label>
+                <!-- <input class="form-control" type="date" id="expdate" name="expdate" value='<?php echo date('Y-m-d');?>'> -->
+                <input class="form-control" type="date" id="expdate" name="expdate">
+
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md mb-3">
+            <label for="topic">Topic</label>
+            <input class="form-control" type="text" id="topic" name="tinput" placeholder="Topic of the notice">
+
+            </div>
+            
+        </div>
+        <div class="form-row">
+            <div class="col-md mb-3">
+            <label for="textcontent">Content</label>
+            <a class="float-right my-1 mr-2" href="" onclick="document.getElementById('upfile').click();">Import csv</a>
+            <textarea rows="4" cols="50" class="form-control" id="textcontent" name="tinput" placeholder="Description"></textarea>
+            <input type="file" style="display:none;" id="upfile" name="file"  accept=".csv"/>
+            </div>
+            
+        </div>
+        <input class="btn btn-light" type="button" value="Go Back" onclick="location.href='home'">
+        <div class="float-right">
+            <input class="btn btn-light" type="submit" value="Clear fields" id="clrbtn" onclick="clrFields()" >
+            <button class="btn btn-primary" name="submit" onclick="noticeSubmit()">Add notice</button>
+        </div>
+            
+        <!-- </form> -->
+    </div>
+    </section>
+
+{% endblock %}

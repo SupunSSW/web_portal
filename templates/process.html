@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="navbar">
+    <a href="logout" class="alink">Sign Out</a>
+    <h3>Successfull!</h3>
+</div>
+
+<section id="two">
+
+    <!-- <form> -->
+    <div class="mx-auto mt-lg-5 mb-md-5" style="width: 80%;">
+        {% csrf_token %}
+        <div class="form-row border-success rounded-lg addsucc my-5 pt-3" id="succarea">
+            <header class="text-center mx-auto">
+            
+            <p class="text-center"><span class="fa fa-check-circle-o text-center"></span><strong> Notice Added Successfully!</strong></p>				
+            <input type="submit" class="btn btn-success my-3" value="Done" onclick="location.replace('addnotice')">
+            </header>
+        </div>
+    
+    </div>
+</section>
+
+{% endblock %}

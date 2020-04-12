@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="navbar">
+    <a href="logout" class="alink">Sign Out</a>
+    <h3>Edit Student</h3>
+</div>
+
+<section id="two">
+
+    <!-- <form> -->
+    <form id="mysform" method="POST" class="mx-auto mt-lg-5 mb-md-5" style="width: 80%;">
+    {% csrf_token %}
+        
+        <div class="form-row mb-5">
+
+            <label id="sidVal"><strong>Index Number <span class="label label-default px-2 py-1">{{student.id}}</span></strong></label>
+            <input type="text" id="inval" style="display:none;" value="{{student.id}}">
+
+        </div>
+        <div class="form-row">
+
+            <div class="col-md-3 mb-3">
+                <label for="fname">First Name</label>
+                <input class="form-control" type="text" id="fname" placeholder="ex: Supun" value="{{student.fname}}">
+
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="lname">Last Name</label>
+                <input class="form-control" type="text" id="lname" placeholder="ex: Sadeepa" value="{{student.lname}}">
+
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="regno">Registration Number</label>
+                <input class="form-control" type="text" id="regno" placeholder="ex: ICT/15/16/081" value="{{student.regno}}">
+
+            </div>
+
+        </div>
+
+        <div class="form-row mb-5 mt-3">
+            <div class="col-md-4 mb-3">
+                <label for="dpt">Department</label>
+                <select class="form-control" id="dpt" name="dpt">
+                    <option value="Computing" {%if student.dpt == 'Computing' %} selected {% endif %}>Computing</option>
+                    <option value="Physical Sciences" {%if student.dpt == 'Physical Sciences' %} selected {% endif %}>Physical Sciences</option>
+                    <option value="Biological Sciences" {%if student.dpt == 'Biological Sciences' %} selected {% endif %}>Biological Sciences</option>
+                    <option value="Health Promotion" {%if student.dpt == 'Health Promotion' %} selected {% endif %}>Health Promotion</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="acayear">Academic Year</label>
+                <select class="form-control" id="acayear" name="acayear">
+                    <option value="1" {%if student.acayear == '1' %} selected {% endif %}>1st Year</option>
+                    <option value="2" {%if student.acayear == '2' %} selected {% endif %}>2nd Year</option>
+                    <option value="3" {%if student.acayear == '3' %} selected {% endif %}>3rd Year</option>
+                    <option value="4" {%if student.acayear == '4' %} selected {% endif %}>4th Year</option>
+                </select>
+            </div>
+        </div>
+                
+        <div class="d-flex justify-content-between">
+            <input class="btn btn-light float-left" type="button" value="Go Back" onclick="location.href='home'">
+
+            
+            <div>
+                <input class="btn btn-light" type="reset" value="Clear fields" id="clrbtn">
+                <button class="btn btn-primary" name="submit">Add
+                    student</button>
+
+            </div>
+        </div>
+
+
+        <!-- </form> -->
+    </form>
+     
+</section>
+
+<script language="JavaScript">
+
+    $('#mysform').on('submit',function(event){
+        event.preventDefault();
+        let ff = $('#fname').val();
+        let ll = $('#lname').val();
+        let ii = $('#inval').val();
+        let rr = $('#regno').val();
+
+
+        if( ff && ll && rr){
+            $.ajax({
+                type: 'POST',
+                url: 'editsprocess',
+                data: {
+                    fnam: ff,
+                    lnam: ll,
+                    uin: ii,
+                    regn: rr,
+                    dprt : $('#dpt').val(),
+                    acayr : $('#acayear').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success:function(data) {
+                    alert("Recorded Successfully!");
+                    location.replace('students')
+
+                },
+                error:function(xhr,errmsg,err){
+                    alert(xhr.responseText);
+                }
+            });
+        } else {
+            alert("Please fill in all the fields!");
+        }
+        
+    });
+
+
+</script>
+
+{% endblock %}
