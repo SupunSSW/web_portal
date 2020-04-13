@@ -112,8 +112,16 @@
 
 <script language="JavaScript">
 
+
+    let imageData;
+    let framecount = 0;
+
     $('#mysform').on('submit',function(event){
         event.preventDefault();
+        framecount = 0;
+
+        document.getElementById("subbutton").disabled = true;
+
         let ff = $('#fname').val();
         let ll = $('#lname').val();
         let ii = $('#uindex').val();
@@ -134,7 +142,7 @@
                 },
                 success:function(data) {
                     alert("Student Added Successfully!");
-                    $('#clrbtn').click();
+                    location.reload();
                     alert(data)
 
                 },
@@ -150,8 +158,6 @@
     });
 
 
-    let imageData;
-    let framecount = 0;
     Webcam.attach('#my_camera');
     Webcam.set({
         width: 320,

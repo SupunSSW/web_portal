@@ -67,11 +67,11 @@ def addsprocess(request):
         dprt = request.POST['dpt']
         acayr = request.POST['acayear']
 
-        Student.objects.create(id = uindex, regno = reg, fname = fnam, lname = lnam, dpt = dprt, acayear = acayr, funq = '1')
+        varr = pt.test()
 
-        var = pt.test()
+        Student.objects.create(id = uindex, regno = reg, fname = fnam, lname = lnam, dpt = dprt, acayear = acayr, funq = varr)
 
-        return HttpResponse(var)
+        return HttpResponse(varr)
     else:
         return redirect('/')
     
